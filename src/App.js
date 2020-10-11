@@ -18,16 +18,16 @@ function App() {
 
       setTasks([
         ...tasks,
-        { name: {taskName}, 
-          detail: {description}, 
-          date: {dueDate} }
+        { name: taskName, 
+          detail: description, 
+          date: dueDate}
       ]);
 
       setName("");
       setDescription("");
       setDueDate("");
-  }
-};
+   }
+  };
 
   const ToDoItem = ({ task }) => {
 
@@ -52,11 +52,13 @@ function App() {
       <div
       style ={{
         border: "3px solid black",
-        width: "300",
-        marginBottom: "50",
-        padding: "10",
+        width: "300px",
+        marginBottom: "50px",
+        padding: "10px",
         alignItems: "center",
-        textAlign: "center"
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
       }}>
 
       {status ? (
@@ -83,7 +85,12 @@ function App() {
   
     <div
     style={{
-      alignItems: "center", backgroundColor:'ivory', textAlign: "center"}}
+      alignItems: "center", 
+      backgroundColor:'ivory', 
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "column"
+    }}
     >
     <title>To Do List</title>
     <h1>Please Do These Things</h1>
@@ -113,8 +120,9 @@ function App() {
     <br></br>
 
     <button onClick={addItem}> Add it!</button>
+    <br></br>
 
-    {tasks.map((todo) => <ToDoItem> task={todo} </ToDoItem>)}
+    {tasks.map((todo) => <ToDoItem task={todo} />)}
     </div>
   );
 };
