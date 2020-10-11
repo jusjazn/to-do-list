@@ -10,7 +10,6 @@ function App() {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-
   // adding items
   const addItem = () => {
     if(taskName === "" || description === "" || dueDate ===""){
@@ -19,11 +18,9 @@ function App() {
 
       setTasks([
         ...tasks,
-        {
-          name: {taskName}, 
+        { name: {taskName}, 
           detail: {description}, 
-          date: {dueDate} 
-        },
+          date: {dueDate} }
       ]);
 
       setName("");
@@ -32,7 +29,7 @@ function App() {
   }
 };
 
-  const ToDoItem = ( {task} ) => {
+  const ToDoItem = ({ task }) => {
 
     const [status, setStatus] = useState(false);
 
@@ -48,6 +45,7 @@ function App() {
       
       setTasks(newArray);
       });
+
     };
 
     return (
@@ -116,14 +114,7 @@ function App() {
 
     <button onClick={addItem}> Add it!</button>
 
-    {tasks.map((todo) => (
-      <ToDoItem> task={todo} </ToDoItem>
-    ))}
-
-     <h1>{taskName}</h1>
-     <h1>{description}</h1>
-     <h1>{dueDate}</h1>
-
+    {tasks.map((todo) => <ToDoItem> task={todo} </ToDoItem>)}
     </div>
   );
 };
