@@ -20,8 +20,15 @@ function App() {
 
   // adding items
   const addItem = () => {
+
+    var regex = /^(\d{2}\/)\d{2}/;
     if(taskName === "" || description === "" || dueDate ===""){
       alert("Please fill out all of the fields!")
+
+      // check if date input is correct
+    } else if (!regex.test(dueDate)){
+      alert("Please format date correctly!")
+
     } else {
 
       setTasks([
@@ -42,14 +49,30 @@ function App() {
     setTasks([]);
   }
 
+  // comparer function 
+  const getSortOrder = (key) => {
+    return function(a, b){
+      if (a[key] > b[key]){
+        return 1;
+      } else if (a[key] < b[key]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  }
+
   // order items by date
   const orderDate = () => {
-
+    const sorted = [...tasks].sort(getSortOrder("date"));
+    setTasks(sorted);
   }
 
   // order items by name
   const orderName = () => {
-
+    // check alphabetical order
+    const sorted = [...tasks].sort(getSortOrder("name"));
+    setTasks(sorted);
   }
 
   const ToDoItem = ({ task }) => {
